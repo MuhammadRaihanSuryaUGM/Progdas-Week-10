@@ -53,6 +53,7 @@ void printStudents(const studentType students[], const int CLASS_SIZE){
         std::cout << "Students : " << std::endl;
         for (int i = 0; i < CLASS_SIZE; i++){
             std::cout << students[i].studentLName << ", " << students[i].studentFName << std::endl
+                      << "test score = " << students[i].testScore << std::endl
                       << "grade = " << students[i].grade << std::endl;
         }
         std::cout << "\n";
@@ -72,18 +73,19 @@ void printWinner(const studentType students[], const std::vector<int> indexMax, 
 }
 
 int main(){
-    const int CLASS_SIZE = 20; //ini adalah deklarasi variabel yang disesuaikan dengan soal
-    studentType students[CLASS_SIZE];
+    const int CLASS_SIZE = 20; // ini adalah deklarasi variabel konstan yang disesuaikan dengan soal
+    studentType students[CLASS_SIZE]; // deklarasi variabel struct berupa array bernama students
 
-    input(students, CLASS_SIZE);
-    AssignGrade(students, CLASS_SIZE);
+    input(students, CLASS_SIZE); // proses input dari user
+    AssignGrade(students, CLASS_SIZE); // meng-assign grade dari data input ke masing masing data student
 
-    std::vector<int> indexMax;
-    int highest_score = highScore(students, indexMax, CLASS_SIZE);
+    std::vector<int> indexMax; // deklarasi vector untuk siswa dengan test score tertinggi. Kenapa vector?
+                               // karena vector dapat menutupi kekurangan array, yaitu vector bersifat dinamis.
+    int highest_score = highScore(students, indexMax, CLASS_SIZE); // mengambil nilai highest score dari fungsi highScore()
 
-    printStudents(students, CLASS_SIZE);
+    printStudents(students, CLASS_SIZE); // print students
 
-    printWinner(students, indexMax, highest_score);
+    printWinner(students, indexMax, highest_score); // print student yang punya nilai tertinggi, memungkinkan lebih dari satu.
 
     return 0;
 }
